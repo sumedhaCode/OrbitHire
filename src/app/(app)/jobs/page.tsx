@@ -27,7 +27,7 @@ export default async function JobsPage({
         {session.role === "recruiter" ? (
           <Link
             href="/jobs/new"
-            className="rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground"
+            className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-[0_8px_18px_rgba(59,130,246,0.25)]"
           >
             Post a role
           </Link>
@@ -68,7 +68,7 @@ export default async function JobsPage({
             <li key={job.id}>
               <Link
                 href={`/jobs/${job.id}`}
-                className="block rounded-xl border border-zinc-200 bg-white p-4 hover:border-indigo-200 hover:shadow-sm"
+                className="block rounded-xl border border-slate-200 bg-white p-4 hover:border-sky-300 hover:shadow-sm"
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>

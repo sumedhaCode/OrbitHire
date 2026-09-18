@@ -1,149 +1,115 @@
 import Link from "next/link";
-import { ArrowRight, Building2, LineChart, ShieldCheck } from "lucide-react";
+import { BrandMark, PillLink } from "@/components/brand-mark";
+import { HiringFunnel } from "@/components/hiring-funnel";
 import { getSession } from "@/lib/auth";
 
 export default async function HomePage() {
   const session = await getSession();
 
   return (
-    <div className="min-h-full bg-[#0b1020] text-zinc-100">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
-        <p className="text-xs font-semibold tracking-[0.22em] text-indigo-300">
-          ORBITHIRE
-        </p>
-        <div className="flex items-center gap-2">
+    <div className="min-h-full bg-[#e8ecf4] px-3 py-3 sm:px-5 sm:py-5">
+      <div className="mx-auto min-h-[calc(100vh-2.5rem)] max-w-[1180px] rounded-[28px] bg-white px-5 py-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)] sm:px-10 sm:py-8">
+        <header className="flex items-center justify-between gap-4">
+          <BrandMark />
+          <nav className="hidden items-center gap-7 text-sm text-slate-500 md:flex">
+            <Link href="/" className="hover:text-slate-900">
+              Home
+            </Link>
+            <Link href="/jobs" className="hover:text-slate-900">
+              Roles
+            </Link>
+            <Link href="/login" className="hover:text-slate-900">
+              Demo
+            </Link>
+            <Link href="/register" className="hover:text-slate-900">
+              Students
+            </Link>
+          </nav>
           {session ? (
-            <Link
-              href="/dashboard"
-              className="inline-flex h-8 items-center rounded-lg bg-indigo-500 px-3 text-sm font-medium text-white hover:bg-indigo-400"
-            >
+            <PillLink href="/dashboard" className="h-10 px-5">
               Open workspace
-            </Link>
+            </PillLink>
           ) : (
-            <>
-              <Link
-                href="/login"
-                className="inline-flex h-8 items-center rounded-lg px-3 text-sm text-zinc-100 hover:bg-white/10"
-              >
-                Sign in
-              </Link>
-              <Link
-                href="/register"
-                className="inline-flex h-8 items-center rounded-lg bg-indigo-500 px-3 text-sm font-medium text-white hover:bg-indigo-400"
-              >
-                Student sign up
-              </Link>
-            </>
+            <PillLink href="/login" className="h-10 px-5">
+              Get early access
+            </PillLink>
           )}
-        </div>
-      </header>
+        </header>
 
-      <section className="mx-auto grid max-w-6xl gap-12 px-4 pb-20 pt-10 md:grid-cols-[1.2fr_0.8fr] md:pt-16">
-        <div>
-          <p className="text-sm text-indigo-300">Built for TPO cells, recruiters, and 2026 batches</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Run campus hiring like a product team, not a spreadsheet.
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-zinc-400">
-            OrbitHire is a full-stack campus placement system: eligibility-aware
-            applications, a recruiter pipeline with interviews and offers, and
-            placement-cell analytics. Next.js App Router, MongoDB, role-based
-            access — the stack MNCs actually ask about.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/login"
-              className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-indigo-500 px-3 text-sm font-medium text-white hover:bg-indigo-400"
-            >
-              Try the live demo <ArrowRight className="size-4" />
-            </Link>
-            <Link
-              href="/register"
-              className="inline-flex h-9 items-center rounded-lg border border-white/20 px-3 text-sm text-white hover:bg-white/10"
-            >
-              Create a student account
-            </Link>
+        <section className="mt-10 grid items-center gap-12 pb-8 lg:grid-cols-[1.05fr_0.95fr] lg:mt-14">
+          <div>
+            <h1 className="text-[3.25rem] font-semibold leading-[0.95] tracking-tight text-slate-900 sm:text-7xl">
+              Hiring
+              <span className="mt-1 block font-medium text-[#9aa3b8]">Made</span>
+              <span className="block font-medium text-[#9aa3b8]">Easy</span>
+            </h1>
+            <p className="mt-6 max-w-md text-[15px] leading-7 text-slate-400">
+              Automatically find and assess campus talent. Cut hiring time for
+              each role with eligibility checks, a recruiter pipeline, and
+              placement-cell analytics.
+            </p>
+            <div className="mt-8">
+              <PillLink href={session ? "/dashboard" : "/login"}>
+                Get early access
+              </PillLink>
+            </div>
+            <div className="mt-14">
+              <p className="text-4xl font-semibold tracking-tight text-slate-900">
+                3 roles
+              </p>
+              <p className="mt-1 text-sm text-slate-400">Partner with us</p>
+              <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium text-slate-400">
+                <span>HelixPay</span>
+                <span>Vertex Cloud</span>
+                <span>Northstar Labs</span>
+                <span>NIT Nagpur</span>
+              </div>
+            </div>
           </div>
-          <dl className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-white/10 pt-8 text-sm">
-            <div>
-              <dt className="text-zinc-500">Roles</dt>
-              <dd className="mt-1 text-lg font-medium">3</dd>
-            </div>
-            <div>
-              <dt className="text-zinc-500">Pipeline stages</dt>
-              <dd className="mt-1 text-lg font-medium">6</dd>
-            </div>
-            <div>
-              <dt className="text-zinc-500">Seeded demo</dt>
-              <dd className="mt-1 text-lg font-medium">Ready</dd>
-            </div>
-          </dl>
-        </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-          <p className="text-xs font-medium uppercase tracking-wider text-zinc-400">
-            Demo accounts · password <span className="text-zinc-200">Campus@2026</span>
+          <HiringFunnel />
+        </section>
+
+        <section className="mt-4 border-t border-slate-100 pt-10 pb-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+            Live demo · password Campus@2026
           </p>
-          <ul className="mt-4 space-y-3 text-sm">
-            <li className="rounded-xl bg-black/30 p-3">
-              <p className="font-medium">Student</p>
-              <p className="text-zinc-400">student@orbithire.dev</p>
-              <p className="mt-1 text-xs text-zinc-500">Apply, track interviews, maintain a profile with CGPA and skills.</p>
-            </li>
-            <li className="rounded-xl bg-black/30 p-3">
-              <p className="font-medium">Recruiter · HelixPay</p>
-              <p className="text-zinc-400">recruiter@orbithire.dev</p>
-              <p className="mt-1 text-xs text-zinc-500">Post roles, shortlist, schedule loops, release offers.</p>
-            </li>
-            <li className="rounded-xl bg-black/30 p-3">
-              <p className="font-medium">Training & Placement Officer</p>
-              <p className="text-zinc-400">tpo@orbithire.dev</p>
-              <p className="mt-1 text-xs text-zinc-500">See the full funnel, average CTC, and branch mix.</p>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section className="border-t border-white/10 bg-[#0e1428]">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 md:grid-cols-3">
-          <Feature
-            icon={ShieldCheck}
-            title="Eligibility is enforced"
-            body="CGPA floors and branch filters run at apply-time, not as a polite note on a PDF. Duplicate applications are blocked in MongoDB."
-          />
-          <Feature
-            icon={Building2}
-            title="Recruiter pipeline"
-            body="Kanban-style stages from applied → placed. Interviews carry time and mode; offers carry CTC so analytics are real numbers."
-          />
-          <Feature
-            icon={LineChart}
-            title="TPO analytics"
-            body="Funnel counts, average offered CTC, and student headcount by branch — the slides placement cells actually present."
-          />
-        </div>
-      </section>
-
-      <footer className="border-t border-white/10 px-4 py-8 text-center text-xs text-zinc-500">
-        OrbitHire · Next.js, MongoDB, Mongoose · demo data is local unless you set MONGODB_URI
-      </footer>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <DemoCard
+              role="Student"
+              email="student@orbithire.dev"
+              body="Apply, track interviews, keep CGPA and skills current."
+            />
+            <DemoCard
+              role="Recruiter"
+              email="recruiter@orbithire.dev"
+              body="Post roles, shortlist, schedule loops, release offers."
+            />
+            <DemoCard
+              role="Placement cell"
+              email="tpo@orbithire.dev"
+              body="Funnel, average CTC, and branch mix on one screen."
+            />
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
 
-function Feature({
-  icon: Icon,
-  title,
+function DemoCard({
+  role,
+  email,
   body,
 }: {
-  icon: typeof ShieldCheck;
-  title: string;
+  role: string;
+  email: string;
   body: string;
 }) {
   return (
-    <div>
-      <Icon className="size-5 text-indigo-300" />
-      <h2 className="mt-3 text-lg font-medium">{title}</h2>
-      <p className="mt-2 text-sm leading-6 text-zinc-400">{body}</p>
+    <div className="rounded-2xl bg-[#f3f5fa] p-5">
+      <p className="font-semibold text-slate-900">{role}</p>
+      <p className="mt-1 text-sm text-[#3b82f6]">{email}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-500">{body}</p>
     </div>
   );
 }

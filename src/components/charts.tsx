@@ -28,7 +28,7 @@ export function BranchChart({
           <XAxis dataKey="branch" tick={{ fontSize: 12 }} />
           <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
           <Tooltip />
-          <Bar dataKey="students" fill="#4338ca" radius={[6, 6, 0, 0]} />
+          <Bar dataKey="students" fill="#3b82f6" radius={[6, 6, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>
@@ -61,7 +61,7 @@ export function FunnelList({
             </div>
             <div className="h-2 overflow-hidden rounded-full bg-zinc-100">
               <div
-                className="h-full rounded-full bg-indigo-600"
+                className="h-full rounded-full bg-[#3b82f6]"
                 style={{ width: `${(n / max) * 100}%` }}
               />
             </div>

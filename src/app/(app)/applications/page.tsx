@@ -23,7 +23,7 @@ export default async function ApplicationsPage() {
         <p className="rounded-xl border border-dashed border-zinc-300 bg-white p-8 text-center text-sm text-zinc-500">
           No applications yet.{" "}
           {session.role === "student" ? (
-            <Link href="/jobs" className="text-indigo-700 hover:underline">
+            <Link href="/jobs" className="text-[#3b82f6] hover:underline">
               Browse roles
             </Link>
           ) : null}

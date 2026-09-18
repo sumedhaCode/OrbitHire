@@ -12,6 +12,7 @@ import {
   UserRound,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
+import { BrandMark } from "@/components/brand-mark";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { SessionUser } from "@/lib/auth";
@@ -43,30 +44,31 @@ export function AppShell({
         : "Student";
 
   return (
-    <div className="min-h-full bg-zinc-50">
+    <div className="min-h-full bg-[#e8ecf4]">
       <div className="flex min-h-full">
-        <aside className="hidden w-60 shrink-0 border-r border-zinc-200 bg-white md:flex md:flex-col">
-          <Link href="/dashboard" className="px-5 py-5">
-            <p className="text-xs font-semibold tracking-[0.2em] text-indigo-700">
-              ORBITHIRE
-            </p>
-            <p className="mt-1 text-sm text-zinc-500">Campus placement OS</p>
+        <aside className="hidden w-60 shrink-0 border-r border-slate-200/80 bg-white md:flex md:flex-col">
+          <Link href="/dashboard" className="px-5 py-6">
+            <BrandMark />
+            <p className="mt-2 pl-10 text-xs text-slate-400">Campus placement OS</p>
           </Link>
           <nav className="flex flex-1 flex-col gap-0.5 px-3">
             {items.map((item) => {
               const active =
                 pathname === item.href ||
-                (item.href !== "/dashboard" && pathname.startsWith(item.href) && item.href !== "/jobs/new" && !(item.href === "/jobs" && pathname.startsWith("/jobs/new")));
+                (item.href !== "/dashboard" &&
+                  pathname.startsWith(item.href) &&
+                  item.href !== "/jobs/new" &&
+                  !(item.href === "/jobs" && pathname.startsWith("/jobs/new")));
               const Icon = item.icon;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-2 rounded-lg px-3 py-2 text-sm",
+                    "flex items-center gap-2 rounded-full px-3 py-2 text-sm",
                     active
-                      ? "bg-indigo-50 font-medium text-indigo-900"
-                      : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900",
+                      ? "bg-sky-50 font-medium text-[#2563eb]"
+                      : "text-slate-500 hover:bg-slate-50 hover:text-slate-900",
                   )}
                 >
                   <Icon className="size-4" />
@@ -75,9 +77,9 @@ export function AppShell({
               );
             })}
           </nav>
-          <div className="border-t border-zinc-200 p-4">
-            <p className="truncate text-sm font-medium">{user.name}</p>
-            <p className="truncate text-xs text-zinc-500">{roleLabel}</p>
+          <div className="border-t border-slate-100 p-4">
+            <p className="truncate text-sm font-medium text-slate-900">{user.name}</p>
+            <p className="truncate text-xs text-slate-400">{roleLabel}</p>
             <form action={logoutAction} className="mt-3">
               <Button variant="outline" size="sm" className="w-full justify-start">
                 <LogOut className="size-3.5" />
@@ -87,9 +89,9 @@ export function AppShell({
           </div>
         </aside>
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="flex items-center justify-between border-b border-zinc-200 bg-white px-4 py-3 md:hidden">
-            <Link href="/dashboard" className="text-xs font-semibold tracking-[0.2em] text-indigo-700">
-              ORBITHIRE
+          <header className="flex items-center justify-between border-b border-slate-200/80 bg-white px-4 py-3 md:hidden">
+            <Link href="/dashboard">
+              <BrandMark />
             </Link>
             <form action={logoutAction}>
               <Button variant="ghost" size="sm">
@@ -97,7 +99,7 @@ export function AppShell({
               </Button>
             </form>
           </header>
-          <nav className="flex gap-1 overflow-x-auto border-b border-zinc-200 bg-white px-2 py-2 md:hidden">
+          <nav className="flex gap-1 overflow-x-auto border-b border-slate-200/80 bg-white px-2 py-2 md:hidden">
             {items.map((item) => (
               <Link
                 key={item.href}
@@ -105,8 +107,8 @@ export function AppShell({
                 className={cn(
                   "whitespace-nowrap rounded-full px-3 py-1 text-xs",
                   pathname === item.href
-                    ? "bg-indigo-50 text-indigo-900"
-                    : "text-zinc-600",
+                    ? "bg-sky-50 text-[#2563eb]"
+                    : "text-slate-500",
                 )}
               >
                 {item.label}

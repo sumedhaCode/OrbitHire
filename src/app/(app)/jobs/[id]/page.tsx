@@ -100,7 +100,7 @@ export default async function JobDetailPage({
             {job.skills.map((s) => (
               <span
                 key={s}
-                className="rounded-full bg-indigo-50 px-2 py-0.5 text-xs text-indigo-800"
+                className="rounded-full bg-sky-50 px-2 py-0.5 text-xs text-sky-800"
               >
                 {s}
               </span>

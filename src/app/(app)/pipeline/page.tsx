@@ -50,7 +50,7 @@ export default async function PipelinePage() {
                     <Link
                       key={app.id}
                       href={`/applications/${app.id}`}
-                      className="block rounded-lg border border-zinc-200 bg-white p-3 hover:border-indigo-200"
+                      className="block rounded-lg border border-slate-200 bg-white p-3 hover:border-sky-300"
                     >
                       <p className="text-sm font-medium">{app.student?.name}</p>
                       <p className="text-xs text-zinc-500">{app.job?.title}</p>
