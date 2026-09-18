@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { ArrowRight, Building2, LineChart, ShieldCheck } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { getSession } from "@/lib/auth";
 
 export default async function HomePage() {
@@ -15,21 +13,24 @@ export default async function HomePage() {
         </p>
         <div className="flex items-center gap-2">
           {session ? (
-            <Link href="/dashboard" className={buttonVariants()}>
+            <Link
+              href="/dashboard"
+              className="inline-flex h-8 items-center rounded-lg bg-indigo-500 px-3 text-sm font-medium text-white hover:bg-indigo-400"
+            >
               Open workspace
             </Link>
           ) : (
             <>
               <Link
                 href="/login"
-                className={cn(
-                  buttonVariants({ variant: "ghost" }),
-                  "text-zinc-100 hover:bg-white/10 hover:text-white",
-                )}
+                className="inline-flex h-8 items-center rounded-lg px-3 text-sm text-zinc-100 hover:bg-white/10"
               >
                 Sign in
               </Link>
-              <Link href="/register" className={buttonVariants()}>
+              <Link
+                href="/register"
+                className="inline-flex h-8 items-center rounded-lg bg-indigo-500 px-3 text-sm font-medium text-white hover:bg-indigo-400"
+              >
                 Student sign up
               </Link>
             </>
@@ -50,15 +51,15 @@ export default async function HomePage() {
             access — the stack MNCs actually ask about.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/login" className={buttonVariants({ size: "lg" })}>
+            <Link
+              href="/login"
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-indigo-500 px-3 text-sm font-medium text-white hover:bg-indigo-400"
+            >
               Try the live demo <ArrowRight className="size-4" />
             </Link>
             <Link
               href="/register"
-              className={cn(
-                buttonVariants({ size: "lg", variant: "outline" }),
-                "border-white/20 bg-transparent text-white hover:bg-white/10",
-              )}
+              className="inline-flex h-9 items-center rounded-lg border border-white/20 px-3 text-sm text-white hover:bg-white/10"
             >
               Create a student account
             </Link>

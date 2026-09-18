@@ -4,12 +4,27 @@ import { Application, Job, User } from "./models";
 
 const DEMO_PASSWORD = "Campus@2026";
 
+const globalForSeed = globalThis as typeof globalThis & {
+  __orbithireSeed?: Promise<{ seeded: boolean }>;
+};
+
 export async function ensureSeeded() {
   await connectDb();
-  const count = await User.countDocuments();
-  if (count > 0) return { seeded: false };
-  await seedDatabase();
-  return { seeded: true };
+  if (!globalForSeed.__orbithireSeed) {
+    globalForSeed.__orbithireSeed = (async () => {
+      const [users, jobs] = await Promise.all([
+        User.countDocuments(),
+        Job.countDocuments(),
+      ]);
+      if (users > 0 && jobs > 0) return { seeded: false };
+      await seedDatabase();
+      return { seeded: true };
+    })().catch((err) => {
+      globalForSeed.__orbithireSeed = undefined;
+      throw err;
+    });
+  }
+  return globalForSeed.__orbithireSeed;
 }
 
 export async function seedDatabase() {
