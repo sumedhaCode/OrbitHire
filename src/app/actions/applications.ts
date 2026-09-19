@@ -115,11 +115,11 @@ export async function updateApplicationStatusAction(
 export async function scheduleInterviewAction(
   applicationId: string,
   formData: FormData,
-) {
+): Promise<void> {
   const interviewAt = String(formData.get("interviewAt") ?? "");
   const interviewMode = String(formData.get("interviewMode") ?? "online");
   const note = String(formData.get("note") ?? "Interview scheduled");
-  return updateApplicationStatusAction(applicationId, "interview", {
+  await updateApplicationStatusAction(applicationId, "interview", {
     interviewAt,
     interviewMode,
     note,
@@ -129,9 +129,9 @@ export async function scheduleInterviewAction(
 export async function releaseOfferAction(
   applicationId: string,
   formData: FormData,
-) {
+): Promise<void> {
   const offerCtcLpa = Number(formData.get("offerCtcLpa"));
-  return updateApplicationStatusAction(applicationId, "offer", {
+  await updateApplicationStatusAction(applicationId, "offer", {
     offerCtcLpa: Number.isFinite(offerCtcLpa) ? offerCtcLpa : undefined,
     note: "Offer released",
   });

@@ -6,11 +6,11 @@ import { connectDb } from "@/lib/db";
 import { Job } from "@/lib/models";
 import { getSession } from "@/lib/auth";
 
-export async function createJobAction(formData: FormData) {
+export async function createJobAction(formData: FormData): Promise<void> {
   await connectDb();
   const session = await getSession();
   if (!session || session.role !== "recruiter") {
-    return { error: "Only recruiters can post roles." };
+    redirect("/jobs");
   }
 
   const title = String(formData.get("title") ?? "").trim();
@@ -29,7 +29,7 @@ export async function createJobAction(formData: FormData) {
   const openings = Number(formData.get("openings"));
 
   if (!title || !location || !description || !deadline) {
-    return { error: "Title, location, description, and deadline are required." };
+    redirect("/jobs/new");
   }
 
   const job = await Job.create({

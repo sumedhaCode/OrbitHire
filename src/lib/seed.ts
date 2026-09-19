@@ -258,7 +258,7 @@ export async function seedDatabase() {
   ]);
 
   const studentByEmail = Object.fromEntries(
-    students.map((s) => [s.email, s]),
+    students.map((s: { email: string }) => [s.email, s]),
   );
   const sumedha = studentByEmail["student@orbithire.dev"];
   const ishaan = studentByEmail["ishaan@orbithire.dev"];

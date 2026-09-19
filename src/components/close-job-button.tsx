@@ -17,7 +17,11 @@ export function CloseJobButton({
       variant="outline"
       size="sm"
       disabled={pending}
-      onClick={() => start(() => closeJobAction(jobId))}
+      onClick={() =>
+        start(() => {
+          void closeJobAction(jobId);
+        })
+      }
     >
       {status === "open" ? "Close role" : "Reopen role"}
     </Button>
